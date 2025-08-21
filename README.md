@@ -1,4 +1,4 @@
-# 酥卷静态文件
+## 酥卷静态文件
 
 仓库内容将自动使用 [`https://assets.sumemo.dev`](https://assets.sumemo.dev) 分发
 

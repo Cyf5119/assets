@@ -1,0 +1,46 @@
+name: sync to cloudflare kv
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: checkout data repo
+        uses: actions/checkout@v4
+        with:
+          path: data
+
+      - name: generate token
+        id: generate-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+
+      - name: checkout worker repo
+        uses: actions/checkout@v4
+        with:
+          repository: 'open-xiv/assets-worker'
+          token: ${{ steps.generate-token.outputs.token }}
+          path: worker
+
+      - name: setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: install dependencies
+        run: npm --prefix ./worker install
+
+      - name: sync to cloudflare kv
+        env:
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          KV_NAMESPACE_ID: ${{ secrets.CF_KV_NAMESPACE_ID }}
+          DATA_PATH: ./data
+        run: node ./worker/src/upload.mts

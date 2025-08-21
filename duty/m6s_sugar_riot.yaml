@@ -38,7 +38,7 @@ mechanics:
     actions:
       - { type: INCREMENT_VARIABLE, name: 色彩狂热次数, value: 1 }
   - name: 双手涂鸦 1
-    trigger: { type: ACTION_EVENT, status: START, action_id: 42625 }
+    trigger: { type: STATUS_EVENT, status: REMOVED, status_id: 4450 }
   - name: 黏黏慕斯怪
     name_en: Sticky Mousse
     trigger: { type: ACTION_EVENT, status: START, action_id: 42645 }

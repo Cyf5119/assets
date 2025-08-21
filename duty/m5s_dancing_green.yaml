@@ -58,11 +58,11 @@ mechanics:
 
   # --- Phase 3 Mechanics ---
   - name: 青蛙舞者 1 # 左右刀
-    trigger: { type: COMBATANT_EVENT, status: SPAWN, NpcID: 42870 }
+    trigger: { type: ACTION_EVENT, status: START, action_id: 42870 }
   - name: 青蛙舞者 2 # 近引导
-    trigger: { type: COMBATANT_EVENT, status: SPAWN, NpcID: 42871 }
+    trigger: { type: ACTION_EVENT, status: START, action_id: 42871 }
   - name: 青蛙舞者 3 # 左右刀
-    trigger: { type: COMBATANT_EVENT, status: SPAWN, NpcID: 42789 }
+    trigger: { type: ACTION_EVENT, status: START, action_id: 42789 }
   - name: 热舞场地
     name_en: Funky Floor
     trigger: { type: ACTION_EVENT, status: START, action_id: 42834 }

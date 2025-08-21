@@ -22,7 +22,7 @@ jobs:
           app-id: ${{ secrets.APP_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
           owner: ${{ github.repository_owner }}
-          repositories: 'open-xiv/assets-worker'
+          repositories: 'assets-worker'
 
       - name: Checkout Worker Repo
         uses: actions/checkout@v4

@@ -37,7 +37,7 @@ jobs:
           node-version: '20'
 
       - name: Install Dependencies
-        run: npm --prefix ./worker install
+        run: npm --prefix ./worker install tsx
 
       - name: Sync to Cloudflare KV
         env:
@@ -45,4 +45,4 @@ jobs:
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
           KV_NAMESPACE_ID: ${{ secrets.CF_KV_NAMESPACE_ID }}
           DATA_PATH: ./data
-        run: node ./worker/src/upload.mts
+        run: npx --prefix ./worker tsx ./src/upload.mts

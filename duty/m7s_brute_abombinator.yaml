@@ -101,7 +101,6 @@ timeline:
         - 野蛮冲
         - 荆棘生死战 墙面
         - 小怪阶段 2
-        - 野蛮冲
         - 究极超豪华野蛮大乱击
       transitions:
         - target_phase: 狂暴

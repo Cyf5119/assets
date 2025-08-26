@@ -11,6 +11,7 @@ code: M6s
 
 # --- Meta ---
 party_size: 8
+level: 100
 logs_encounter:
   zone: 68
   encounter: 98

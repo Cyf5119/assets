@@ -39,7 +39,7 @@ async function build() {
                 const parsed = yaml.load(content) as { zone_id?: number };
 
                 if (parsed && parsed.zone_id) {
-                    const mapping = JSON.stringify(parsed);
+                    const mapping = JSON.stringify(parsed, null, 4);
                     const dst = path.join("public", "duty", `${parsed.zone_id}.json`);
                     fs.writeFileSync(dst, mapping, "utf-8");
                     console.log(`${f} copied to ${dst}`);

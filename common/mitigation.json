@@ -270,6 +270,16 @@
         "on_member": true
     },
     {
+        "id": 1219,
+        "name": "告解",
+        "mitigation": {
+            "physical": 10,
+            "magical": 10,
+            "special": 10
+        },
+        "on_member": true
+    },
+    {
         "id": 1873,
         "name": "节制",
         "mitigation": {

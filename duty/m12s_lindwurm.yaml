@@ -32,7 +32,7 @@ mechanics:
 
 # --- Timeline ---
 timeline:
-    start_phase: P1
+    start_phase: N/A
 
     phases:
         -   name: N/A

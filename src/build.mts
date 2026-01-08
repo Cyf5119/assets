@@ -16,7 +16,7 @@ async function build() {
     // common/*.json -> public/*.json
     const commonDir = path.join(DATA_PATH, "common");
     if (fs.existsSync(commonDir)) {
-        for (const f of fs.readdirSync(commonDir).filter(x => x.endsWith(".json"))) {
+        for (const f of fs.readdirSync(commonDir).filter(x => /\.(json|png)$/i.test(x))) {
             const dst = path.join(DIST_PATH, f);
             fs.copyFileSync(path.join(commonDir, f), dst);
             console.log(`${f} copied to ${dst}`);

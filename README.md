@@ -2,12 +2,6 @@
 
 仓库内容使用 [`https://assets.sumemo.dev`](https://assets.sumemo.dev) 分发
 
----
-
-![Alt](https://repobeats.axiom.co/api/embed/012973f45c3a133ce983a05bb442fbd8c215206e.svg "Repobeats Analytics Image")
-
----
-
 ## 主要内容
 
 ### [通用内容](common)
@@ -20,7 +14,9 @@
 
 ### [副本进度配置](duty)
 
-阿卡狄亚零式登天斗技场 中量级 `监修中`
+阿卡狄亚零式登天斗技场 中量级
+阿卡狄亚零式登天斗技场 重量级 `监修中`
+究极神兵绝境战
 
 > 通过 `/duty/{zoneID}` 访问
 

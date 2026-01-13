@@ -18,19 +18,92 @@ logs_encounter:
     difficulty: 101
 
 # --- Variables ---
-variables: [ ]
+variables: 
+    -   name: 门神八球次数
+        initial: 0
+    -   name: 本体运动会次数
+        initial: 0
 
 # --- Mechanics ---
 mechanics:
+    # --- 门神 ---
+    -   name: 致命灾变
+        trigger: { type: ACTION_EVENT, status: START, action_id: 46229 }
+        actions:
+            - { type: INCREMENT_VARIABLE, name: 门神八球次数, value: 1 }
+
+    # --- 门神一运 ---
+    -   name: 细胞附身·早期
+        trigger: { type: ACTION_EVENT, status: START, action_id: 48829 }
+    -   name: 大爆炸
+        trigger: { type: ACTION_EVENT, status: START, action_id: 46239 }
+
+    # --- 门神二运 ---
+    -   name: 细胞附身·中期
+        trigger: { type: ACTION_EVENT, status: START, action_id: 48830 }
+    -   name: 残暴拘束
+        trigger: { type: ACTION_EVENT, status: START, action_id: 46265 }
+    -   name: 细胞变异
+        trigger: { type: ACTION_EVENT, status: START, action_id: 46259 }
+    
+    # --- 门神三运 ---
+    -   name: 细胞附身·晚期
+        trigger: { type: ACTION_EVENT, status: START, action_id: 48831 }
+    -   name: 细胞飞散
+        trigger: { type: ACTION_EVENT, status: START, action_id: 47395 }
+
+    # --- 门神四运 ---
+    -   name: 细胞附身·末期
+        trigger: { type: ACTION_EVENT, status: START, action_id: 48832 }
+    -   name: 盛大登场
+        trigger: { type: ACTION_EVENT, status: START, action_id: 46243 }
+
+    # --- 门神四运后 ---
+    -   name: 喋血
+        trigger: { type: ACTION_EVENT, status: START, action_id: 46275 }
+    -   name: 过愈过伤(门神狂暴)
+        trigger: { type: ACTION_EVENT, status: START, action_id: 46392 }
+    
+    # --- 本体一运 ---
+    -   name: 自我复制
+        trigger: { type: ACTION_EVENT, status: START, action_id: 46296 }
+        actions:
+            - { type: INCREMENT_VARIABLE, name: 本体运动会次数, value: 1 }
+    -   name: 天顶猛击
+        trigger: { type: ACTION_EVENT, status: START, action_id: 46301 }
+
+    # --- 本体二运 ---
+    -   name: 模仿细胞
+        trigger: { type: ACTION_EVENT, status: START, action_id: 46305 }
+        actions:
+            - { type: INCREMENT_VARIABLE, name: 本体运动会次数, value: 1 }
+    -   name: 时空重现
+        trigger: { type: ACTION_EVENT, status: START, action_id: 46316 }
+
+    # --- 本体三运 ---
+    -   name: 变异细胞
+        trigger: { type: ACTION_EVENT, status: START, action_id: 46341 }
+        actions:
+            - { type: INCREMENT_VARIABLE, name: 本体运动会次数, value: 1 }
+    -   name: 双重飞踢
+        trigger: { type: ACTION_EVENT, status: START, action_id: 46373 }
+
+    # --- 本体四运 ---
+    -   name: 境中奇梦
+        trigger: { type: ACTION_EVENT, status: START, action_id: 46345 }
+        actions:
+            - { type: INCREMENT_VARIABLE, name: 本体运动会次数, value: 1 }
+    -   name: 林德布鲁姆陨石
+        trigger: { type: ACTION_EVENT, status: START, action_id: 46322 }
+    
+    #--- 本体四运后 ---
+    -   name: 境中奇狱
+        trigger: { type: ACTION_EVENT, status: START, action_id: 46388 }
+    -   name: 境中奇狱(本体狂暴)
+        trigger: { type: ACTION_EVENT, status: START, action_id: 46389 }
+
     -   name: 转场
-        trigger: { type: ACTION_EVENT, status: START, action_id: 48028 }
-    -   name: 狂暴
-        trigger:
-            type: LOGICAL_OPERATOR
-            operator: OR
-            conditions:
-                - { type: ACTION_EVENT, status: START, action_id: 42142 }
-                - { type: ACTION_EVENT, status: START, action_id: 42141 }
+        trigger: { type: STATUS_EVENT, status: APPLIED, action_id: 2408 }
 
 # --- Timeline ---
 timeline:
@@ -39,8 +112,68 @@ timeline:
     phases:
         -   name: 门神
             target_id: 19195
+            checkpoints: 
+                - 致命灾变
+            transitions:
+                -   target_phase: 门神一运
+                    conditions:
+                        -   type: MECHANIC_TRIGGERED
+                            mechanic_name: 细胞附身·早期
+
+        -   name: 门神一运
+            target_id: 19195
             checkpoints:
-                - 转场
+                - 大爆炸
+            transitions:
+                -   target_phase: 门神二运
+                    conditions:
+                        -   type: MECHANIC_TRIGGERED
+                            mechanic_name: 细胞附身·中期
+            
+        -   name: 门神二运
+            target_id: 19195
+            checkpoints:
+                - 残暴拘束
+                - 细胞变异
+            transitions:
+                -   target_phase: 门神三运
+                    conditions:
+                        -   type: MECHANIC_TRIGGERED
+                            mechanic_name: 细胞附身·晚期
+            
+        -   name: 门神三运
+            target_id: 19195
+            checkpoints:
+                - 细胞飞散
+            transitions:
+                -   target_phase: 门神四运
+                    conditions:
+                        -   type: MECHANIC_TRIGGERED
+                            mechanic_name: 细胞附身·末期
+            
+        -   name: 门神四运
+            target_id: 19195
+            checkpoints:
+                - 盛大登场
+            transitions:
+                -   target_phase: 门神四运后
+                    conditions:
+                        -   type: EXPRESSION
+                            expression: variables.门神八球次数 == 2
+            
+        -   name: 门神四运后
+            target_id: 19195
+            checkpoints:
+                - 喋血
+            transitions:
+                -   target_phase: 门神狂暴
+                    conditions:
+                        -   type: MECHANIC_TRIGGERED
+                            mechanic_name: 过愈过伤(门神狂暴)
+        
+        -   name: 门神狂暴
+            target_id: 19195
+            checkpoints: [ ]
             transitions:
                 -   target_phase: 本体
                     conditions:
@@ -49,15 +182,63 @@ timeline:
 
         -   name: 本体
             target_id: 19202
-            checkpoints:
-                - 狂暴
+            checkpoints: [ ]
             transitions:
-                -   target_phase: 狂暴
+                -   target_phase: 本体一运
+                    conditions:
+                        -   type: EXPRESSION
+                            expression: variables.本体运动会次数 == 1
+
+        -   name: 本体一运
+            target_id: 19202
+            checkpoints:
+                - 天顶猛击
+            transitions:
+                -   target_phase: 本体二运
+                    conditions:
+                        -   type: EXPRESSION
+                            expression: variables.本体运动会次数 == 2
+        
+        -   name: 本体二运
+            target_id: 19202
+            checkpoints:
+                - 时空重现
+            transitions:
+                -   target_phase: 本体三运
+                    conditions:
+                        -   type: EXPRESSION
+                            expression: variables.本体运动会次数 == 3
+        
+        -   name: 本体三运
+            target_id: 19202
+            checkpoints:
+                - 双重飞踢
+            transitions:
+                -   target_phase: 本体四运
+                    conditions:
+                        -   type: EXPRESSION
+                            expression: variables.本体运动会次数 == 4
+        
+        -   name: 本体四运
+            target_id: 19202
+            checkpoints:
+                - 林德布鲁姆陨石
+            transitions:
+                -   target_phase: 本体四运后
                     conditions:
                         -   type: MECHANIC_TRIGGERED
-                            mechanic_name: 狂暴
+                            mechanic_name: 境中奇狱
+            
+        -   name: 本体四运后
+            target_id: 19202
+            checkpoints:
+            transitions:
+                -   target_phase: 本体狂暴
+                    conditions:
+                        -   type: MECHANIC_TRIGGERED
+                            mechanic_name: 境中奇狱(本体狂暴)
 
-        -   name: 狂暴
-            target_id: 0
-            checkpoints: [ ]
+        -   name: 本体狂暴
+            target_id: 19202
+            checkpoints: [ ] 
             transitions: [ ]

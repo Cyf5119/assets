@@ -30,7 +30,7 @@ jobs:
             -   name: Pack Artifacts
                 run: |
                     cd public
-                    tar -cf ../dist.tar .
+                    tar -cf ../dist.tar *
 
             -   name: Upload Assets
                 run: |

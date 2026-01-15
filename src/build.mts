@@ -12,8 +12,8 @@ if (!fs.existsSync(path.join(DIST_PATH, "duty"))) {
 }
 
 async function build() {
-    // common json files
-    // common/*.json -> public/*.json
+    // common files
+    // common/*.{json/png} -> public/*.{json/png}
     const commonDir = path.join(DATA_PATH, "common");
     if (fs.existsSync(commonDir)) {
         for (const f of fs.readdirSync(commonDir).filter(x => /\.(json|png)$/i.test(x))) {
@@ -24,8 +24,7 @@ async function build() {
     } else {
         console.log(`directory ${commonDir} does not exist, skipping`);
     }
-
-
+    
     // duty yaml files
     // duty/<name>.yaml -> public/duty/<zoneID>.json
     const dutyDir = path.join(DATA_PATH, "duty");

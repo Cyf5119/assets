@@ -22,7 +22,7 @@ jobs:
                 run: npm ci
 
             -   name: Build assets
-                run: node src/build.mts
+                run: npx tsx src/build.mts
 
             -   name: Pack Artifacts
                 run: |

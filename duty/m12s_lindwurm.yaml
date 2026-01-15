@@ -66,7 +66,12 @@ mechanics:
 
     # --- 本体可选中
     -   name: 本体出现
-        trigger: { type: COMBATANT_EVENT,status: TARGETABLE, npc_id: 19202 }
+        trigger:
+            type: LOGICAL_OPERATOR
+            operator: OR
+            conditions:
+                - { type: COMBATANT_EVENT, status: TARGETABLE, npc_id: 19202 }
+                - { type: ACTION_EVENT, status: START, action_id: 46367 }
 
     # --- 本体一运 ---
     -   name: 自我复制

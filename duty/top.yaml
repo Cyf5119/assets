@@ -14,141 +14,151 @@ party_size: 8
 level: 90
 
 # --- Variables ---
-variables: [ ]
+variables: []
 
 # --- Mechanics ---
 mechanics:
     # --- Phase 1 Mechanics ---
-    -   name: 冲击波
-        trigger: { type: ACTION_EVENT, status: START, action_id: 31495 }
-    -   name: 全能之主
-        trigger: { type: ACTION_EVENT, status: START, action_id: 31499 }
+    - name: 循环程序
+      trigger: { type: ACTION_EVENT, status: START, action_id: 31491 }
+    - name: 全能之主
+      trigger: { type: ACTION_EVENT, status: START, action_id: 31499 }
+    # - name: 原子射线 # 狂暴，打快了会跳过
+    #   trigger: { type: ACTION_EVENT, status: START, action_id: 31480 }
 
-    -   name: 防御程序 # P1 -> P2
-        trigger: { type: STATUS_EVENT, status: APPLIED, status_id: 31553 }
-
+    - name: 防御程序 # P1 -> P2
+      trigger: { type: ACTION_EVENT, status: START, status_id: 31552 }
+      
     # --- Phase 2 Mechanics ---
-    -   name: 协作程序
-        trigger: { type: ACTION_EVENT, status: START, action_id: 31550 }
-
-    -   name: 你好世界 # P2 -> P3
-        trigger: { type: ACTION_EVENT, status: START, action_id: 31573 }
+    - name: 协作程序PT
+      trigger: { type: ACTION_EVENT, status: START, action_id: 31550 }
+    - name: 协作程序LB
+      trigger: { type: ACTION_EVENT, status: START, action_id: 31544 }
+    - name: P2宇宙记忆 # 狂暴
+      trigger: { type: ACTION_EVENT, status: START, action_id: 31522 }
+    
+    - name: 你好世界 # P2 -> P3
+      trigger: { type: ACTION_EVENT, status: START, action_id: 31573 }
 
     # --- Phase 3 Mechanics ---
-    -   name: 潜在错误
-        trigger: { type: ACTION_EVENT, status: START, action_id: 31599 }
-    -   name: 严重错误
-        trigger: { type: ACTION_EVENT, status: START, action_id: 31588 }
-    -   name: 探测式波动炮
-        trigger: { type: ACTION_EVENT, status: START, action_id: 31595 }
+    - name: 探测式波动炮
+      trigger: { type: ACTION_EVENT, status: START, action_id: 31595 }
+    - name: 离子流出 # 狂暴，应该也是可能会跳过的
+      trigger: { type: ACTION_EVENT, status: START, action_id: 31560 }
 
-    -   name: 波动炮 # P3 -> P4
-        trigger: { type: ACTION_EVENT, status: START, action_id: 31617 }
+    - name: 波动炮 # P3 -> P4
+      trigger: { type: ACTION_EVENT, status: START, action_id: 31617 }
 
     # --- Phase 4 Mechanics ---
-    -   name: 蓝屏
-        trigger: { type: ACTION_EVENT, status: START, action_id: 31611 }
+    - name: 蓝屏 # 狂暴
+      trigger: { type: ACTION_EVENT, status: START, action_id: 31611 }
 
-    -   name: 太阳射线 # P4 -> P5
-        trigger: { type: ACTION_EVENT, status: START, action_id: 33196 }
+    - name: 太阳射线 # P4 -> P5
+      trigger: { type: ACTION_EVENT, status: START, action_id: 33196 }
 
     # --- Phase 5 Mechanics ---
-    -   name: 德尔塔
-        trigger: { type: ACTION_EVENT, status: START, action_id: 31624 }
-    -   name: 西格玛
-        trigger: { type: ACTION_EVENT, status: START, action_id: 32788 }
-    -   name: 盲信
-        trigger: { type: ACTION_EVENT, status: START, action_id: 31623 }
+    - name: 代码：＊能＊（德尔塔）
+      trigger: { type: ACTION_EVENT, status: START, action_id: 31624 }
+    - name: 代码：＊能＊（西格玛）
+      trigger: { type: ACTION_EVENT, status: START, action_id: 32788 }
+    - name: 代码：＊能＊（欧米茄）
+      trigger: { type: ACTION_EVENT, status: START, action_id: 32789 }
+    - name: 盲信
+      trigger: { type: ACTION_EVENT, status: START, action_id: 31623 }
 
-
-    -   name: 宇宙记忆 # P5 -> P6
-        trigger: { type: ACTION_EVENT, status: START, action_id: 31649 }
+    - name: 宇宙记忆 # P5 -> P6
+      trigger: { type: ACTION_EVENT, status: START, action_id: 31649 }
 
     # --- Phase 6 Mechanics ---
-    -   name: 宇宙天箭
-        trigger: { type: ACTION_EVENT, status: START, action_id: 31651 }
-    -   name: 宇宙龙炎
-        trigger: { type: ACTION_EVENT, status: START, action_id: 31654 }
-    -   name: 波动炮：限制解除
-        trigger: { type: ACTION_EVENT, status: START, action_id: 31660 }
+    - name: 宇宙天箭
+      trigger: { type: ACTION_EVENT, status: START, action_id: 31650 }
+    - name: 宇宙龙炎
+      trigger: { type: ACTION_EVENT, status: START, action_id: 31654 }
+    - name: 波动炮：限制解除
+      trigger: { type: ACTION_EVENT, status: START, action_id: 31660 }
+    - name: 宇宙流星
+      trigger: { type: ACTION_EVENT, status: START, action_id: 31664 }
 
-
-    -   name: 代码：能 # 狂暴
-        trigger: { type: ACTION_EVENT, status: START, action_id: 31648 }
+    - name: 代码：＊能＊ # 狂暴
+      trigger: { type: ACTION_EVENT, status: START, action_id: 31648 }
 
 # --- Timeline ---
 timeline:
     start_phase: P1
 
     phases:
-        -   name: P1
-            target_id: 15708
-            checkpoints:
-                - 冲击波
-                - 全能之主
-            transitions:
-                -   target_phase: P2
-                    conditions:
-                        -   type: MECHANIC_TRIGGERED
-                            mechanic_name: 防御程序
+        - name: P1
+          target_id: 15708
+          checkpoints:
+              - 循环程序
+              - 全能之主
+            #   - 原子射线 # 狂暴，打快了会跳过
+          transitions:
+              - target_phase: P2
+                conditions:
+                    - type: MECHANIC_TRIGGERED
+                      mechanic_name: 防御程序
 
-        -   name: P2
-            target_id: 15713
-            checkpoints:
-                - 协作程序
-            transitions:
-                -   target_phase: P3
-                    conditions:
-                        -   type: MECHANIC_TRIGGERED
-                            mechanic_name: 你好世界
+        - name: P2
+          target_id: 15712
+          checkpoints:
+              - 协作程序PT
+              - 协作程序LB
+              - P2宇宙记忆
+          transitions:
+              - target_phase: P3
+                conditions:
+                    - type: MECHANIC_TRIGGERED
+                      mechanic_name: 你好世界
 
-        -   name: P3
-            target_id: 15717
-            checkpoints:
-                - 潜在错误
-                - 严重错误
-                - 探测式波动炮
-            transitions:
-                -   target_phase: P4
-                    conditions:
-                        -   type: MECHANIC_TRIGGERED
-                            mechanic_name: 波动炮
+        - name: P3
+          target_id: 15717
+          checkpoints:
+              - 探测式波动炮
+            #   - 离子流出 # 狂暴，可能也会跳过的
+          transitions:
+              - target_phase: P4
+                conditions:
+                    - type: MECHANIC_TRIGGERED
+                      mechanic_name: 波动炮
 
-        -   name: P4
-            target_id: 15717
-            checkpoints:
-                - 蓝屏
-            transitions:
-                -   target_phase: P5
-                    conditions:
-                        -   type: MECHANIC_TRIGGERED
-                            mechanic_name: 太阳射线
+        - name: P4
+          target_id: 15717
+          checkpoints:
+              - 蓝屏
+          transitions:
+              - target_phase: P5
+                conditions:
+                    - type: MECHANIC_TRIGGERED
+                      mechanic_name: 太阳射线
 
-        -   name: P5
-            target_id: 15720
-            checkpoints:
-                - 德尔塔
-                - 西格玛
-                - 盲信
-            transitions:
-                -   target_phase: P6
-                    conditions:
-                        -   type: MECHANIC_TRIGGERED
-                            mechanic_name: 宇宙记忆
+        - name: P5
+          target_id: 15720
+          checkpoints:
+              - 代码：＊能＊（德尔塔）
+              - 代码：＊能＊（西格玛）
+              - 代码：＊能＊（欧米茄）
+              - 盲信
+          transitions:
+              - target_phase: P6
+                conditions:
+                    - type: MECHANIC_TRIGGERED
+                      mechanic_name: 宇宙记忆
 
-        -   name: P6
-            target_id: 15725
-            checkpoints:
-                - 宇宙天箭
-                - 宇宙龙炎
-                - 波动炮：限制解除
-            transitions:
-                -   target_phase: 狂暴
-                    conditions:
-                        -   type: MECHANIC_TRIGGERED
-                            mechanic_name: 代码：能
+        - name: P6
+          target_id: 15725
+          checkpoints:
+              - 宇宙天箭
+              - 宇宙龙炎
+              - 波动炮：限制解除
+              - 宇宙流星
+          transitions:
+              - target_phase: 狂暴
+                conditions:
+                    - type: MECHANIC_TRIGGERED
+                      mechanic_name: 代码：＊能＊
 
-        -   name: 狂暴
-            target_id: 15725
-            checkpoints: [ ]
-            transitions: [ ]
+        - name: 狂暴
+          target_id: 15725
+          checkpoints: []
+          transitions: []
